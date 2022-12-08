@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import { Droppable } from "react-beautiful-dnd";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
@@ -41,7 +40,6 @@ interface IAreaProps{
 const Form =  styled.form`
 `;
 
-
 interface IBoardProps {
     toDos: ITodo[];
     boardId: string;
@@ -59,14 +57,10 @@ const Board = ({ toDos, boardId }: IBoardProps) => {
             id:Date.now(),
             text: toDo,
         };
-        console.log(newToDo);
-        console.log({toDos, boardId });
         setToDos((allOldBoards) => {
-            console.log({allOldBoards});
             return{
                 ...allOldBoards,
                 [boardId]:[...allOldBoards[boardId],newToDo],
-                // [boardId]:[newToDo, ...allOldBoards[boardId]],
             };
         });
         setValue("toDo", "");
@@ -83,8 +77,8 @@ const Board = ({ toDos, boardId }: IBoardProps) => {
                     isDraggingOver={info.isDraggingOver}
                     isDraggingFromThis={Boolean(info.draggingFromThisWith)}
                     ref={magic.innerRef} 
-                    
-                    {...magic.droppableProps}  >
+                    {...magic.droppableProps}  
+                    >
                         {toDos.map((toDo, index) => (
                             <DragabbleCard 
                             key={toDo.id} 
@@ -96,6 +90,19 @@ const Board = ({ toDos, boardId }: IBoardProps) => {
                         {magic.placeholder}
                     </Area>
                 )}
+            </Droppable>
+            <Droppable droppableId={boardId}>
+                {(magic,info)=>(
+                    <Area
+                        isDraggingOver={info.isDraggingOver}
+                        isDraggingFromThis={Boolean(info.draggingFromThisWith)}
+                        ref={magic.innerRef} 
+                        {...magic.droppableProps}  
+                    >
+                    
+                    </Area>
+                )}
+
             </Droppable>
         </Wrapper>
     );
