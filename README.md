@@ -7,5 +7,5 @@ https://eluwing.github.io/todo_app/
 ・Separation garbarge Board/Board Component(2022.12.15 complete)  
 ・Board Add/Delete Contorller  
 ・Garbarge Can Reset  
-・Improvement UI
+・Improvement UI  
 ・code refactoring(Componentization)  
