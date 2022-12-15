@@ -17,6 +17,7 @@ interface IDragabbleCardProps {
 };
 
 const DragabbleCard = ({ toDoId, toDoText,index }: IDragabbleCardProps) => {
+    console.log({ toDoId, toDoText,index });
     return (
         <Draggable key={toDoId} draggableId={toDoId+""} index={index}>
             {(magic, info) => (

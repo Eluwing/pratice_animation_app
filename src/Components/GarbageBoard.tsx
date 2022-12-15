@@ -3,16 +3,15 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import DragabbleCard from "./DragabbleCard";
 import { ITodo, toDoState } from "../atoms";
-import { useSetRecoilState } from "recoil";
 
-const Wrapper = styled.div`
+const GarbageWrapper = styled.div`
   padding: 20px 0px;
   padding-top: 30px;
   background-color: ${(props) => props.theme.boardColor};
   border-radius: 5px;
   min-height: 200px;
   margin-bottom: 10px;
-  display:flex;
+
   flex-direction: column;
 `;
 
@@ -30,6 +29,7 @@ const Area = styled.div<IAreaProps>`
     flex-grow: 1;
     transition: backgroud-color .3s ease-in-out;
     padding: 20px;
+    min-width: 200px;
 `;
 
 interface IAreaProps {
@@ -41,37 +41,17 @@ const Form = styled.form`
 `;
 
 interface IBoardProps {
-    toDos: ITodo[];
+    gabageCan: ITodo[];
     boardId: string;
 }
 
-interface IForm {
-    toDo: string;
-}
+const GarbageBoard = ({ gabageCan, boardId }: IBoardProps) => {
 
-const Board = ({ toDos, boardId }: IBoardProps) => {
-    const setToDos = useSetRecoilState(toDoState);
-    const { register, setValue, handleSubmit } = useForm<IForm>();
-    const onValid = ({ toDo }: IForm) => {
-        const newToDo = {
-            id: Date.now(),
-            text: toDo,
-        };
-        setToDos((allOldBoards) => {
-            return {
-                ...allOldBoards,
-                [boardId]: [...allOldBoards[boardId], newToDo],
-            };
-        });
-        setValue("toDo", "");
-    }
-    console.log({toDos, boardId}); 
+    console.log({gabageCan, boardId});
+    //DroppableProvided:magic, DroppableStateSnapshot:info
     return (
-        <Wrapper>
+        <GarbageWrapper>
             <Title>{boardId}</Title>
-            <Form onSubmit={handleSubmit(onValid)}>
-                <input {...register("toDo", { required: true })} type="text" placeholder={`Add task on ${boardId}`}></input>
-            </Form>
             <Droppable droppableId={boardId}>
                 {(magic, info) => (
                     <Area
@@ -80,7 +60,7 @@ const Board = ({ toDos, boardId }: IBoardProps) => {
                         ref={magic.innerRef}
                         {...magic.droppableProps}
                     >
-                        {toDos.map((toDo, index) => (
+                        {gabageCan.map((toDo, index) => (
                             <DragabbleCard
                                 key={toDo.id}
                                 toDoId={toDo.id}
@@ -92,9 +72,9 @@ const Board = ({ toDos, boardId }: IBoardProps) => {
                     </Area>
                 )}
             </Droppable>
-        </Wrapper>
+        </GarbageWrapper>
     );
 
 };
 
-export default Board;
+export default GarbageBoard;

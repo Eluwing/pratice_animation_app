@@ -3,6 +3,7 @@ import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useRecoilState } from "recoil";
 import { garbageCanState, toDoState } from "./atoms";
 import Board from "./Components/Board";
+import GarbageBoard from "./Components/GarbageBoard";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -77,6 +78,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding-top:100px
+  
 `;
 
 const Boards = styled.div`
@@ -99,6 +101,7 @@ const GarbageWrapper = styled.div`
 const GarbageBoards = styled.div`
   display: flex;
   width:100%;
+  min-width:200px;
   
 `;
 
@@ -182,14 +185,11 @@ function App() {
         <GarbageBoards>
           {Object.keys(garbageCan).map(
               (boardId) => (
-                <Board boardId={boardId} key={boardId} toDos={garbageCan[boardId]} />
+                <GarbageBoard boardId={boardId} key={boardId} gabageCan={garbageCan[boardId]} />
               )
             )}
           </GarbageBoards>
-
         </GarbageWrapper>
-
-
       </DragDropContext>
     </>
   );
