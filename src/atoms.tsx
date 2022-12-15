@@ -19,6 +19,14 @@ export const toDoState = atom<IToDoState>({
 
 });
 
+export const garbageCanState = atom<IToDoState>({
+    key: "garbageCan",
+    default: {
+        "Garbage Can": [],
+    },
+
+});
+
 // export const toDoSelector = selector({
 //     key: "toDoSelector",
 //     get: ({ get }) => {
