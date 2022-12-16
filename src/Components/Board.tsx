@@ -65,7 +65,6 @@ const Board = ({ toDos, boardId }: IBoardProps) => {
         });
         setValue("toDo", "");
     }
-    console.log({toDos, boardId}); 
     return (
         <Wrapper>
             <Title>{boardId}</Title>
