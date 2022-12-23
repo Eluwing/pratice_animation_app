@@ -47,7 +47,6 @@ interface IBoardProps {
 
 const GarbageBoard = ({ gabageCan, boardId }: IBoardProps) => {
 
-    console.log({gabageCan, boardId});
     //DroppableProvided:magic, DroppableStateSnapshot:info
     return (
         <GarbageWrapper>

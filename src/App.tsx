@@ -4,6 +4,7 @@ import { useRecoilState } from "recoil";
 import { garbageCanState, toDoState } from "./atoms";
 import Board from "./Components/Board";
 import GarbageBoard from "./Components/GarbageBoard";
+import BoardController from "./Components/BoardController";
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -171,6 +172,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
+      <BoardController />
       <DragDropContext onDragEnd={onDragEnd}>
         <Wrapper>
           <Boards>
