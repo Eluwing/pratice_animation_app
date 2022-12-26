@@ -8,4 +8,5 @@ https://eluwing.github.io/todo_app/
 ・Board Add/Delete Contorller(2022.12.23 complete)  
 ・Garbarge Can Reset  
 ・Improvement UI  
+・Add tools that lint&prettier  
 ・code refactoring(Componentization)  
