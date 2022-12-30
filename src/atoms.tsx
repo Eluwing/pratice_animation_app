@@ -1,30 +1,26 @@
-import { atom, selector } from "recoil";
+import { atom } from 'recoil';
 
-export interface ITodo{
-    id: number;
-    text: string;
+export interface ITodo {
+  id: number;
+  text: string;
 }
 
-interface IToDoState{
-    [key: string]: ITodo[];
-}
+export type IToDoState = Record<string, ITodo[]>;
 
 export const toDoState = atom<IToDoState>({
-    key: "toDo",
-    default: {
-        "To Do": [],
-        Doing: [],
-        Done: [],
-    },
-
+  key: 'toDo',
+  default: {
+    'To Do': [],
+    Doing: [],
+    Done: [],
+  },
 });
 
 export const garbageCanState = atom<IToDoState>({
-    key: "garbageCan",
-    default: {
-        "Garbage Can": [],
-    },
-
+  key: 'garbageCan',
+  default: {
+    'Garbage Can': [],
+  },
 });
 
 // export const toDoSelector = selector({
