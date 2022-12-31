@@ -10,4 +10,5 @@ https://eluwing.github.io/todo_app/
 ・Garbarge Can Reset  
 ・Improvement UI  
 ・Add tools that lint&prettier  
+・Add Test Code  
 ・code refactoring(Componentization)  
