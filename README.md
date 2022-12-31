@@ -9,6 +9,6 @@ https://eluwing.github.io/todo_app/
 ・Board reset that created board(2022.12.26 complete)  
 ・Garbarge Can Reset  
 ・Improvement UI  
-・Add tools that lint&prettier  
+・Add tools that lint&prettier(2022.12.13 complete)  
 ・Add Test Code  
 ・code refactoring(Componentization)  
