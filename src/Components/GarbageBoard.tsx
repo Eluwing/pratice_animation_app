@@ -31,6 +31,10 @@ const Area = styled.div<IAreaProps>`
   padding: 20px;
   min-width: 200px;
 `;
+const GabargeButtonArea = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 interface IAreaProps {
   isDraggingFromThis: boolean;
@@ -52,7 +56,9 @@ const GarbageBoard = ({ gabageCan, boardId }: IBoardProps): JSX.Element => {
   return (
     <GarbageWrapper>
       <Title>{boardId}</Title>
-      <button onClick={onGabageReset}>Reset</button>
+      <GabargeButtonArea>
+        <button onClick={onGabageReset}>Reset</button>
+      </GabargeButtonArea>
       <Droppable droppableId={boardId}>
         {(magic, info) => (
           <Area
