@@ -1,10 +1,11 @@
-import styled, { createGlobalStyle } from "styled-components";
-import { DragDropContext, DropResult } from "react-beautiful-dnd";
-import { useRecoilState } from "recoil";
-import { garbageCanState, toDoState } from "./atoms";
-import Board from "./Components/Board";
-import GarbageBoard from "./Components/GarbageBoard";
-import BoardController from "./Components/BoardController";
+import styled, { createGlobalStyle } from 'styled-components';
+import { DragDropContext, DropResult } from 'react-beautiful-dnd';
+import { useRecoilState } from 'recoil';
+import { garbageCanState, IToDoState, toDoState } from './atoms';
+import Board from './Components/Board';
+import GarbageBoard from './Components/GarbageBoard';
+import BoardController from './Components/BoardController';
+import React from 'react';
 
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -72,26 +73,24 @@ a {
 `;
 
 const Wrapper = styled.div`
-  display:flex;
+  display: flex;
   max-width: 480px;
   width: 100%;
   margin: 0 auto;
   justify-content: center;
   align-items: center;
-  padding-top:100px
-  
+  padding-top: 100px;
 `;
 
 const Boards = styled.div`
   display: grid;
-  width:100%;
-  grid-template-columns: repeat(3,1fr);
-  gap:10px;
-  
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 `;
 
 const GarbageWrapper = styled.div`
-  display:flex;
+  display: flex;
   max-width: 480px;
   width: 100%;
   margin: 0 auto;
@@ -101,22 +100,21 @@ const GarbageWrapper = styled.div`
 
 const GarbageBoards = styled.div`
   display: flex;
-  width:100%;
-  min-width:200px;
-  
+  width: 100%;
+  min-width: 200px;
 `;
 
-function App() {
+function App(): JSX.Element {
   const [toDos, setToDos] = useRecoilState(toDoState);
   const [garbageCan, setGarbageCan] = useRecoilState(garbageCanState);
-  const onDragEnd = (info: DropResult) => {
+  const onDragEnd = (info: DropResult): void => {
     const { destination, source } = info;
 
-    if (!destination) return;
+    if (destination == null) return;
 
-    //same board 
+    // same board
     if (destination?.droppableId === source?.droppableId) {
-      setToDos((allOldBoards: any) => {
+      setToDos((allOldBoards: IToDoState) => {
         const boardCopy = [...allOldBoards[source.droppableId]];
         const taskObj = boardCopy[source.index];
         // 1) delete item on source.index
@@ -125,36 +123,31 @@ function App() {
         boardCopy.splice(destination?.index, 0, taskObj);
         return {
           ...allOldBoards,
-          [source.droppableId]: boardCopy
+          [source.droppableId]: boardCopy,
         };
       });
     }
-    if((destination?.droppableId === "Garbage Can")&&
-    (destination?.droppableId !== source?.droppableId)){
-
+    if (destination?.droppableId === 'Garbage Can' && destination?.droppableId !== source?.droppableId) {
       const toDoBoard = [...toDos[source?.droppableId]];
-      //Add target item in Todo List 
+      // Add target item in Todo List
       setGarbageCan((allOldGarbageBoards) => {
         const garbageBoard = [...allOldGarbageBoards[destination?.droppableId]];
         const toDoTaskObj = toDoBoard[source.index];
-        garbageBoard.splice(destination.index,0, toDoTaskObj);
+        garbageBoard.splice(destination.index, 0, toDoTaskObj);
         return {
           ...allOldGarbageBoards,
-          [destination.droppableId]:garbageBoard,
-          
-        }
+          [destination.droppableId]: garbageBoard,
+        };
       });
-      //Delete target item in Todo List 
-      setToDos((allOldToDoBoards) => {          
-        toDoBoard.splice(source.index,1);
-        return{
+      // Delete target item in Todo List
+      setToDos((allOldToDoBoards) => {
+        toDoBoard.splice(source.index, 1);
+        return {
           ...allOldToDoBoards,
           [source.droppableId]: toDoBoard,
-        }
+        };
       });
-
-    }
-    else{
+    } else {
       setToDos((allOldBoards) => {
         const sourceBoard = [...allOldBoards[source?.droppableId]];
         const destinationBoard = [...allOldBoards[destination?.droppableId]];
@@ -165,7 +158,7 @@ function App() {
           ...allOldBoards,
           [source.droppableId]: sourceBoard,
           [destination?.droppableId]: destinationBoard,
-        }
+        };
       });
     }
   };
@@ -176,20 +169,16 @@ function App() {
       <DragDropContext onDragEnd={onDragEnd}>
         <Wrapper>
           <Boards>
-            {Object.keys(toDos).map(
-              (boardId) => (
-                <Board boardId={boardId} key={boardId} toDos={toDos[boardId]} />
-              )
-            )}
+            {Object.keys(toDos).map((boardId) => (
+              <Board boardId={boardId} key={boardId} toDos={toDos[boardId]} />
+            ))}
           </Boards>
         </Wrapper>
         <GarbageWrapper>
-        <GarbageBoards>
-          {Object.keys(garbageCan).map(
-              (boardId) => (
-                <GarbageBoard boardId={boardId} key={boardId} gabageCan={garbageCan[boardId]} />
-              )
-            )}
+          <GarbageBoards>
+            {Object.keys(garbageCan).map((boardId) => (
+              <GarbageBoard boardId={boardId} key={boardId} gabageCan={garbageCan[boardId]} />
+            ))}
           </GarbageBoards>
         </GarbageWrapper>
       </DragDropContext>
