@@ -7,7 +7,7 @@ https://eluwing.github.io/todo_app/
 ・Separation garbarge Board/Board Component(2022.12.15 complete)  
 ・Board Add/Delete Contorller(2022.12.23 complete)  
 ・Board reset that created board(2022.12.26 complete)  
-・Garbarge Can Reset  
+・Garbarge Can Reset(2023.01.2 complete)  
 ・Improvement UI  
 ・Add tools that lint&prettier(2022.12.13 complete)  
 ・Add Test Code  
