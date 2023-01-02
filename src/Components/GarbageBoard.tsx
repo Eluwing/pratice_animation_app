@@ -1,8 +1,9 @@
 import { Droppable } from 'react-beautiful-dnd';
 import styled from 'styled-components';
 import DragabbleCard from './DragabbleCard';
-import { ITodo } from '../atoms';
+import { garbageCanState, ITodo } from '../atoms';
 import React from 'react';
+import { useResetRecoilState } from 'recoil';
 
 const GarbageWrapper = styled.div`
   padding: 20px 0px;
@@ -30,6 +31,10 @@ const Area = styled.div<IAreaProps>`
   padding: 20px;
   min-width: 200px;
 `;
+const GabargeButtonArea = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 interface IAreaProps {
   isDraggingFromThis: boolean;
@@ -42,10 +47,18 @@ interface IBoardProps {
 }
 
 const GarbageBoard = ({ gabageCan, boardId }: IBoardProps): JSX.Element => {
+  const resetGabageState = useResetRecoilState(garbageCanState);
+
+  const onGabageReset = (): void => {
+    resetGabageState();
+  };
   // DroppableProvided:magic, DroppableStateSnapshot:info
   return (
     <GarbageWrapper>
       <Title>{boardId}</Title>
+      <GabargeButtonArea>
+        <button onClick={onGabageReset}>Reset</button>
+      </GabargeButtonArea>
       <Droppable droppableId={boardId}>
         {(magic, info) => (
           <Area
