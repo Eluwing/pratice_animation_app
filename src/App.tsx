@@ -79,7 +79,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
   justify-content: center;
   align-items: center;
-  padding-top: 100px;
+  padding-top: 10px;
 `;
 
 const Boards = styled.div`
@@ -102,6 +102,20 @@ const GarbageBoards = styled.div`
   display: flex;
   width: 100%;
   min-width: 200px;
+`;
+
+const BoardControllerWrapper = styled.div`
+  display: flex;
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  padding-top: 100px;
+`;
+
+const BoardControllerForm = styled.div`
+  display: block;
 `;
 
 function App(): JSX.Element {
@@ -165,7 +179,11 @@ function App(): JSX.Element {
   return (
     <>
       <GlobalStyle />
-      <BoardController />
+      <BoardControllerWrapper>
+        <BoardControllerForm>
+          <BoardController />
+        </BoardControllerForm>
+      </BoardControllerWrapper>
       <DragDropContext onDragEnd={onDragEnd}>
         <Wrapper>
           <Boards>

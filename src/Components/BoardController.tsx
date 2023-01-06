@@ -15,6 +15,26 @@ interface IBoardControllerForm {
 
 const Form = styled.form``;
 
+const BoardControllerArea = styled.div`
+  display: flex;
+  padding: 20px 20px;
+  border-radius: 5px;
+  margin: 0 auto;
+  background-color: ${(props) => props.theme.boardColor};
+`;
+
+const FormButton = styled.div`
+  margin: 5px 0;
+`;
+
+const ResetButtonArea = styled.span`
+  margin: 0 5px;
+`;
+
+const ChangeFormButton = styled.span`
+  margin: 5px 5px;
+`;
+
 const BoardController = (): JSX.Element => {
   const setToDos = useSetRecoilState(toDoState);
   const toDos = useRecoilValue(toDoState);
@@ -77,7 +97,7 @@ const BoardController = (): JSX.Element => {
     return (
       <>
         <button onClick={onResetClick} type="button" name={BOARD_RESET_BUTTON}>
-          Board Reset
+          Reset
         </button>
       </>
     );
@@ -86,13 +106,17 @@ const BoardController = (): JSX.Element => {
   const DeleteForm = (): JSX.Element => {
     return (
       <>
-        <button onClick={onButtonChange} type="button" name={ADD_FORM}>
-          Change Add Form
-        </button>
-        <div>
-          <button type="submit">Board Delete</button>
-          <ResetButton />
-        </div>
+        <ChangeFormButton>
+          <button onClick={onButtonChange} type="button" name={ADD_FORM}>
+            Change Form
+          </button>
+        </ChangeFormButton>
+        <FormButton>
+          <button type="submit">Delete</button>
+          <ResetButtonArea>
+            <ResetButton />
+          </ResetButtonArea>
+        </FormButton>
       </>
     );
   };
@@ -100,26 +124,32 @@ const BoardController = (): JSX.Element => {
   const AddForm = (): JSX.Element => {
     return (
       <>
-        <button onClick={onButtonChange} type="button" name={DELETE_FORM}>
-          Change Delete Form
-        </button>
-        <div>
-          <button type="submit">Board Add</button>
-          <ResetButton />
-        </div>
+        <ChangeFormButton>
+          <button onClick={onButtonChange} type="button" name={DELETE_FORM}>
+            Change Form
+          </button>
+        </ChangeFormButton>
+        <FormButton>
+          <button type="submit">Add</button>
+          <ResetButtonArea>
+            <ResetButton />
+          </ResetButtonArea>
+        </FormButton>
       </>
     );
   };
   return (
     <>
-      <Form onSubmit={handleSubmit(onBoardController)}>
-        <input
-          {...register('targetBoardName', { required: true })}
-          type="text"
-          placeholder="Input Add board Name"
-        ></input>
-        {isDeleteVisible ? <DeleteForm /> : <AddForm />}
-      </Form>
+      <BoardControllerArea>
+        <Form onSubmit={handleSubmit(onBoardController)}>
+          <input
+            {...register('targetBoardName', { required: true })}
+            type="text"
+            placeholder="Input Add board Name"
+          ></input>
+          {isDeleteVisible ? <DeleteForm /> : <AddForm />}
+        </Form>
+      </BoardControllerArea>
     </>
   );
 };
