@@ -12,7 +12,6 @@ const GarbageWrapper = styled.div`
   border-radius: 5px;
   min-height: 200px;
   margin-bottom: 10px;
-
   flex-direction: column;
 `;
 
