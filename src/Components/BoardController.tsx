@@ -23,7 +23,7 @@ const BoardControllerArea = styled.div`
   background-color: ${(props) => props.theme.boardColor};
 `;
 
-const FormButton = styled.div`
+const FormButtonItems = styled.div`
   margin: 5px 0;
 `;
 
@@ -111,12 +111,12 @@ const BoardController = (): JSX.Element => {
             Change Form
           </button>
         </ChangeFormButton>
-        <FormButton>
+        <FormButtonItems>
           <button type="submit">Delete</button>
           <ResetButtonArea>
             <ResetButton />
           </ResetButtonArea>
-        </FormButton>
+        </FormButtonItems>
       </>
     );
   };
@@ -129,12 +129,12 @@ const BoardController = (): JSX.Element => {
             Change Form
           </button>
         </ChangeFormButton>
-        <FormButton>
+        <FormButtonItems>
           <button type="submit">Add</button>
           <ResetButtonArea>
             <ResetButton />
           </ResetButtonArea>
-        </FormButton>
+        </FormButtonItems>
       </>
     );
   };

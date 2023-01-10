@@ -109,8 +109,7 @@ const BoardControllerWrapper = styled.div`
   max-width: 480px;
   width: 100%;
   margin: 0 auto;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
   padding-top: 100px;
 `;
 
