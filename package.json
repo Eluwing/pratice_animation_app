@@ -1,5 +1,5 @@
 {
-  "name": "todo_app",
+  "name": "animation_app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -14,6 +14,7 @@
     "apexcharts": "^3.35.5",
     "ci": "^2.2.0",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "framer-motion": "^8.3.4",
     "gh-pages": "^4.0.0",
     "moment": "^2.29.4",
     "react": "^18.2.0",
