@@ -36,7 +36,7 @@ const boxVariants = {
 };
 
 // A child component of a parent with a default variants parameter follows the parent's attributes.
-const DragsInSquare = (): JSX.Element => {
+const Drags = (): JSX.Element => {
   return (
     <Wrapper>
       <Box drag variants={boxVariants} whileHover="hover" whileDrag="drag" whileTap="click" />
@@ -44,4 +44,4 @@ const DragsInSquare = (): JSX.Element => {
   );
 };
 
-export default DragsInSquare;
+export default Drags;

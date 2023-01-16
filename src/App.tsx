@@ -5,6 +5,9 @@ import Variants from './Variants';
 import Drags from './Drags';
 import Gestures from './Gestures';
 import DragsInSquare from './DragsInSquare';
+import DragsMotionValue from './DragsMotionValue';
+import DragsScroll from './DragsScroll';
+import SvgAnimation from './SvgAnimation';
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -44,6 +47,15 @@ const App = (): JSX.Element => {
       </Wrapper>
       <Wrapper>
         <DragsInSquare />
+      </Wrapper>
+      <Wrapper>
+        <DragsMotionValue />
+      </Wrapper>
+      <Wrapper>
+        <DragsScroll />
+      </Wrapper>
+      <Wrapper>
+        <SvgAnimation />
       </Wrapper>
     </>
   );
