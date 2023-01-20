@@ -46,7 +46,9 @@ const AnimatePresenceWindow = (): JSX.Element => {
     <Wrapper>
       <button onClick={toggleShowing}>Click</button>
       <AnimatePresence>
-        {showing ? <Box variants={boxVariants} initial="initial" animate="visible" exit="leaving" /> : null}
+        {showing ? (
+          <Box variants={boxVariants} initial="initial" animate="visible" exit="leaving" />
+        ) : null}
       </AnimatePresence>
     </Wrapper>
   );
