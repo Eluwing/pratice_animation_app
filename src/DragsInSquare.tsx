@@ -41,7 +41,7 @@ const BiggerBox = styled.div`
 `;
 
 // A child component of a parent with a default variants parameter follows the parent's attributes.
-const Drags = (): JSX.Element => {
+const DragsInSquare = (): JSX.Element => {
   const biggerBoxRef = useRef<HTMLDivElement>(null);
   return (
     <Wrapper>
@@ -61,4 +61,4 @@ const Drags = (): JSX.Element => {
   );
 };
 
-export default Drags;
+export default DragsInSquare;
