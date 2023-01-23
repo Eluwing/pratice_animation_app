@@ -36,15 +36,15 @@ const box = {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 1,
+      duration: 0.3,
     },
   },
   exit: (isBack: boolean) => ({
-    x: isBack ? -500 : 500,
+    x: isBack ? 500 : -500,
     opacity: 0,
     scale: 0,
     transition: {
-      duration: 1,
+      duration: 0.3,
     },
   }),
 };
@@ -61,9 +61,10 @@ const AnimatePresenceSlider = (): JSX.Element => {
     setBack(true);
     setVisible((prev) => (prev === 1 ? 1 : prev - 1));
   };
+  //Need to Bug Fix: Click next button animation after click prev button
   return (
     <Wrapper>
-      <AnimatePresence>
+      <AnimatePresence custom={back}>
         <Box
           variants={box}
           custom={back}
