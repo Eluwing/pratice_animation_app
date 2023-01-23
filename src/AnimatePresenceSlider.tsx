@@ -61,7 +61,7 @@ const AnimatePresenceSlider = (): JSX.Element => {
     setBack(true);
     setVisible((prev) => (prev === 1 ? 1 : prev - 1));
   };
-  //Need to Bug Fix: Click next button animation after click prev button
+  // Need to Bug Fix: Click next button animation after click prev button
   return (
     <Wrapper>
       <AnimatePresence custom={back}>
