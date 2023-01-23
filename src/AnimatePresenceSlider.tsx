@@ -26,12 +26,12 @@ const Box = styled(motion.div)`
 `;
 
 const box = {
-  invisible: {
-    x: 500,
+  entry: (isBack: boolean) => ({
+    x: isBack ? -500 : 500,
     opacity: 0,
     scale: 0,
-  },
-  visible: {
+  }),
+  center: {
     x: 0,
     opacity: 1,
     scale: 1,
@@ -39,32 +39,44 @@ const box = {
       duration: 1,
     },
   },
-  exit: {
-    x: -500,
+  exit: (isBack: boolean) => ({
+    x: isBack ? -500 : 500,
     opacity: 0,
     scale: 0,
     transition: {
       duration: 1,
     },
-  },
+  }),
 };
 
 // A child component of a parent with a default variants parameter follows the parent's attributes.
 const AnimatePresenceSlider = (): JSX.Element => {
   const [visible, setVisible] = useState(1);
-  const nextPlease = (): void => setVisible((prev) => (prev === 10 ? 10 : prev + 1));
+  const [back, setBack] = useState(false);
+  const nextPlease = (): void => {
+    setBack(false);
+    setVisible((prev) => (prev === 10 ? 10 : prev + 1));
+  };
+  const prevPlease = (): void => {
+    setBack(true);
+    setVisible((prev) => (prev === 1 ? 1 : prev - 1));
+  };
   return (
     <Wrapper>
       <AnimatePresence>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) =>
-          i === visible ? (
-            <Box variants={box} initial="invisible" animate="visible" exit="exit" key={i}>
-              {i}
-            </Box>
-          ) : null,
-        )}
+        <Box
+          variants={box}
+          custom={back}
+          initial="entry"
+          animate="center"
+          exit="exit"
+          key={visible}
+        >
+          {visible}
+        </Box>
       </AnimatePresence>
       <button onClick={nextPlease}>next</button>
+      <button onClick={prevPlease}>prev</button>
     </Wrapper>
   );
 };
