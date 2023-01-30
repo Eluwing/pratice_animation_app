@@ -10,6 +10,8 @@ import DragsScroll from './DragsScroll';
 import SvgAnimation from './SvgAnimation';
 import AnimatePresenceWindow from './AnimatePresenceWindow';
 import AnimatePresenceSlider from './AnimatePresenceSlider';
+import LayoutAnimation from './LayoutAnimation';
+import LayoutWindowAnimation from './LayoutWindowAnimation';
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -64,6 +66,12 @@ const App = (): JSX.Element => {
       </Wrapper>
       <Wrapper>
         <AnimatePresenceSlider />
+      </Wrapper>
+      <Wrapper>
+        <LayoutAnimation />
+      </Wrapper>
+      <Wrapper>
+        <LayoutWindowAnimation />
       </Wrapper>
     </>
   );
