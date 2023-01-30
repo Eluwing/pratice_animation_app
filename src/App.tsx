@@ -12,6 +12,7 @@ import AnimatePresenceWindow from './AnimatePresenceWindow';
 import AnimatePresenceSlider from './AnimatePresenceSlider';
 import LayoutAnimation from './LayoutAnimation';
 import LayoutWindowAnimation from './LayoutWindowAnimation';
+import LayoutWindowAniOptimize from './LayoutWindowAniOptimize';
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -72,6 +73,9 @@ const App = (): JSX.Element => {
       </Wrapper>
       <Wrapper>
         <LayoutWindowAnimation />
+      </Wrapper>
+      <Wrapper>
+        <LayoutWindowAniOptimize />
       </Wrapper>
     </>
   );

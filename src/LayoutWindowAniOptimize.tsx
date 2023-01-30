@@ -43,25 +43,24 @@ const Overlay = styled(motion.div)`
 `;
 
 // layoutId property connects animation effect between box component and box component
-const LayoutWindowAnimation = (): JSX.Element => {
-  const [clicked, setClicked] = useState(false);
-  const toggleClicked = (): void => setClicked((prev) => !prev);
+const LayoutWindowAniOptimize = (): JSX.Element => {
+  const [id, setId] = useState<null | string>(null);
   return (
-    <Wrapper onClick={toggleClicked}>
+    <Wrapper>
       <Grid>
-        <Box />
-        <Box />
-        <Box />
-        <Box />
+        {['1', '2', '3', '4'].map((n) => (
+          <Box onClick={() => setId(n)} key={n} layoutId={n} />
+        ))}
       </Grid>
       <AnimatePresence>
-        {clicked ? (
+        {id != null ? (
           <Overlay
+            onClick={() => setId(null)}
             initial={{ backgroundColor: 'rgba(0, 0, 0, 0)' }}
             animate={{ backgroundColor: 'rgba(0, 0, 0, 0.7)' }}
             exit={{ backgroundColor: 'rgba(0, 0, 0, 0)' }}
           >
-            <Box layoutId="hello" style={{ width: 400, height: 200 }} />
+            <Box layoutId={id} style={{ width: 400, height: 200 }} />
           </Overlay>
         ) : null}
       </AnimatePresence>
@@ -69,4 +68,4 @@ const LayoutWindowAnimation = (): JSX.Element => {
   );
 };
 
-export default LayoutWindowAnimation;
+export default LayoutWindowAniOptimize;
